@@ -19,3 +19,14 @@ inputs.forEach(function (input) {
     }
   });
 });
+
+// By clicking on "Расчитать", a block with information about calories appears.
+const result = document.querySelector(".counter__result");
+const form = document.querySelector(".counter__form");
+
+form.addEventListener("submit", function (evt) {
+  evt.preventDefault();
+  if (result.classList.contains("counter__result--hidden")) {
+    result.classList.remove("counter__result--hidden");
+  }
+});
