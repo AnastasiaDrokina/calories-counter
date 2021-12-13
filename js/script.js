@@ -1,52 +1,46 @@
-// Button "Расчитать" becomes active only when all input fields are filled.
-const btnSubmit = document.querySelector(".form__submit-button");
-const ageInput = document.getElementById("age");
-const heightInput = document.getElementById("height");
-const weightInput = document.getElementById("weight");
-
-const inputs = [ageInput, heightInput, weightInput];
-
-inputs.forEach(function (input) {
-  input.addEventListener("change", function () {
-    const age = Number(ageInput.value);
-    const height = Number(heightInput.value);
-    const weight = Number(weightInput.value);
-
-    if (age && height && weight >= 1) {
-      btnSubmit.removeAttribute("disabled");
-    } else {
-      btnSubmit.setAttribute("disabled", "disabled");
-    }
-  });
-});
-
-// By clicking on "Расчитать", a block with information about calories appears.
-const result = document.querySelector(".counter__result");
 const form = document.querySelector(".counter__form");
+const btnSubmit = document.querySelector(".form__submit-button");
+const btnReset = document.querySelector(".form__reset-button");
+const result = document.querySelector(".counter__result");
+let caloriesNorm = document.getElementById("calories-norm");
 
-form.addEventListener("submit", function (evt) {
-  evt.preventDefault();
-  if (result.classList.contains("counter__result--hidden")) {
-    result.classList.remove("counter__result--hidden");
+form.addEventListener("change", function (evt) {
+  const age = Number(evt.target.form.elements.age.value);
+  const height = Number(evt.target.form.elements.height.value);
+  const weight = Number(evt.target.form.elements.weight.value);
+
+  // Button "Расчитать" becomes active only when all input fields are filled.
+  if (age && height && weight >= 1) {
+    btnSubmit.removeAttribute("disabled");
+  } else {
+    btnSubmit.setAttribute("disabled", "disabled");
+  }
+
+  // Button "Очистить поля и расчёт" becomes active when at least one numeric field is filled.
+  if (age || height || weight >= 1) {
+    btnReset.removeAttribute("disabled");
   }
 });
 
-// Button "Очистить поля и расчёт" becomes active when at least one numeric field is filled.
-// All elements of the application are reset to their default state
-const btnReset = document.querySelector(".form__reset-button");
+form.addEventListener("submit", function (evt) {
+  evt.preventDefault();
+  // By clicking on "Расчитать", a block with information about calories appears.
+  if (result.classList.contains("counter__result--hidden")) {
+    result.classList.remove("counter__result--hidden");
+  }
 
-inputs.forEach(function (input) {
-  input.addEventListener("change", function () {
-    const age = Number(ageInput.value);
-    const height = Number(heightInput.value);
-    const weight = Number(weightInput.value);
+  // // Maintaining weight
+  const age = Number(evt.target.elements.age.value);
+  const height = Number(evt.target.elements.height.value);
+  const weight = Number(evt.target.elements.weight.value);
 
-    if (age || height || weight >= 1) {
-      btnReset.removeAttribute("disabled");
-    }
-  });
+  function countWomen(weight, height, age) {
+    return 10 * weight + 6.25 * height - 5 * age - 161;
+  }
+  caloriesNorm.textContent = countWomen(age, height, weight);
 });
 
+// All elements of the application are reset to their default state
 form.addEventListener("reset", function () {
   btnReset.setAttribute("disabled", "disabled");
   btnSubmit.setAttribute("disabled", "disabled");
