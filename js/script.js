@@ -37,20 +37,42 @@ form.addEventListener("submit", function (evt) {
   const age = Number(evt.target.elements.age.value);
   const height = Number(evt.target.elements.height.value);
   const weight = Number(evt.target.elements.weight.value);
-  const percentageNumberMen = (countMen(age, height, weight) / 100) * 15;
+  let activityNumber;
 
-  function countMen(weight, height, age) {
-    return 10 * weight + 6.25 * height - 5 * age + 5;
+  // Activity rates
+  if (evt.target.elements.activity.value === "min") {
+    activityNumber = 1.2;
+  }
+  if (evt.target.elements.activity.value === "low") {
+    activityNumber = 1.375;
+  }
+  if (evt.target.elements.activity.value === "medium") {
+    activityNumber = 1.55;
+  }
+  if (evt.target.elements.activity.value === "high") {
+    activityNumber = 1.725;
+  }
+  if (evt.target.elements.activity.value === "max") {
+    activityNumber = 1.9;
   }
 
-  caloriesNorm.textContent = countMen(age, height, weight);
+  const percentageMen =
+    (countMen(age, height, weight, activityNumber) / 100) * 15;
+
+  function countMen(weight, height, age, activityNumber) {
+    return (10 * weight + 6.25 * height - 5 * age + 5) * activityNumber;
+  }
+
+  caloriesNorm.textContent = Math.round(
+    countMen(age, height, weight, activityNumber)
+  );
 
   caloriesMax.textContent = Math.round(
-    percentageNumberMen + countMen(age, height, weight)
+    percentageMen + countMen(age, height, weight, activityNumber)
   );
 
   caloriesMin.textContent = Math.round(
-    countMen(age, height, weight) - percentageNumberMen
+    countMen(age, height, weight, activityNumber) - percentageMen
   );
 
   // function countWomen(weight, height, age) {
