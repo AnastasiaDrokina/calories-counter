@@ -56,29 +56,47 @@ form.addEventListener("submit", function (evt) {
     activityNumber = 1.9;
   }
 
-  const percentageMen =
-    (countMen(age, height, weight, activityNumber) / 100) * 15;
+  if (evt.target.elements.gender.value === "male") {
+    const percentageMen =
+      (countMen(age, height, weight, activityNumber) / 100) * 15;
 
-  function countMen(weight, height, age, activityNumber) {
-    return (10 * weight + 6.25 * height - 5 * age + 5) * activityNumber;
+    function countMen(weight, height, age, activityNumber) {
+      return (10 * weight + 6.25 * height - 5 * age + 5) * activityNumber;
+    }
+
+    caloriesNorm.textContent = Math.round(
+      countMen(age, height, weight, activityNumber)
+    );
+
+    caloriesMax.textContent = Math.round(
+      percentageMen + countMen(age, height, weight, activityNumber)
+    );
+
+    caloriesMin.textContent = Math.round(
+      countMen(age, height, weight, activityNumber) - percentageMen
+    );
   }
 
-  caloriesNorm.textContent = Math.round(
-    countMen(age, height, weight, activityNumber)
-  );
+  if (evt.target.elements.gender.value === "female") {
+    const percentageWomen =
+      (countWomen(age, height, weight, activityNumber) / 100) * 15;
 
-  caloriesMax.textContent = Math.round(
-    percentageMen + countMen(age, height, weight, activityNumber)
-  );
+    function countWomen(weight, height, age, activityNumber) {
+      return (10 * weight + 6.25 * height - 5 * age - 161) * activityNumber;
+    }
 
-  caloriesMin.textContent = Math.round(
-    countMen(age, height, weight, activityNumber) - percentageMen
-  );
+    caloriesNorm.textContent = Math.round(
+      countWomen(age, height, weight, activityNumber)
+    );
 
-  // function countWomen(weight, height, age) {
-  //   return 10 * weight + 6.25 * height - 5 * age - 161;
-  // }
-  // caloriesNorm.textContent = countWomen(age, height, weight);
+    caloriesMax.textContent = Math.round(
+      percentageWomen + countWomen(age, height, weight, activityNumber)
+    );
+
+    caloriesMin.textContent = Math.round(
+      countWomen(age, height, weight, activityNumber) - percentageWomen
+    );
+  }
 });
 
 // All elements of the application are reset to their default state
