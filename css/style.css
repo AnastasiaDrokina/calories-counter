@@ -296,6 +296,12 @@ input[type="number"] {
   color: var(--color-gray-dark);
 }
 
+@media (max-width: 768px) {
+  .counter__result-item p {
+    margin-bottom: 20px;
+  }
+}
+
 .switcher {
   display: flex;
   align-items: stretch;
