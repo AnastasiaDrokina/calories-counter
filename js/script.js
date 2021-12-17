@@ -2,9 +2,9 @@ const form = document.querySelector(".counter__form");
 const btnSubmit = document.querySelector(".form__submit-button");
 const btnReset = document.querySelector(".form__reset-button");
 const result = document.querySelector(".counter__result");
-const ageValue = Number(document.getElementById("age").value);
-const heightValue = Number(document.getElementById("height").value);
-const weightValue = Number(document.getElementById("weight").value);
+const age = document.getElementById("age");
+const height = document.getElementById("height");
+const weight = document.getElementById("weight");
 let caloriesNorm = document.getElementById("calories-norm");
 let caloriesMin = document.getElementById("calories-minimal");
 let caloriesMax = document.getElementById("calories-maximal");
@@ -30,6 +30,10 @@ function countCalories(weight, height, age, activity, gender) {
 
 // Button "Расчитать" becomes active only when all input fields are filled.
 function checkSubmit() {
+  const ageValue = age.value;
+  const heightValue = height.value;
+  const weightValue = weight.value;
+
   if (ageValue >= 1 && heightValue >= 1 && weightValue >= 1) {
     btnSubmit.removeAttribute("disabled");
   } else {
@@ -39,12 +43,16 @@ function checkSubmit() {
 
 // Button "Очистить поля и расчёт" becomes active when at least one numeric field is filled.
 function checkReset() {
+  const ageValue = age.value;
+  const heightValue = height.value;
+  const weightValue = weight.value;
+
   if (ageValue || heightValue || weightValue) {
     btnReset.removeAttribute("disabled");
   }
 }
 
-form.addEventListener("change", function (evt) {
+form.addEventListener("change", function () {
   checkSubmit();
   checkReset();
 });
