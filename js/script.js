@@ -2,101 +2,81 @@ const form = document.querySelector(".counter__form");
 const btnSubmit = document.querySelector(".form__submit-button");
 const btnReset = document.querySelector(".form__reset-button");
 const result = document.querySelector(".counter__result");
-const male = document.getElementById("gender-male");
-const female = document.getElementById("gender-female");
+const ageValue = Number(document.getElementById("age").value);
+const heightValue = Number(document.getElementById("height").value);
+const weightValue = Number(document.getElementById("weight").value);
 let caloriesNorm = document.getElementById("calories-norm");
 let caloriesMin = document.getElementById("calories-minimal");
 let caloriesMax = document.getElementById("calories-maximal");
 
-form.addEventListener("change", function (evt) {
-  const age = Number(evt.target.form.elements.age.value);
-  const height = Number(evt.target.form.elements.height.value);
-  const weight = Number(evt.target.form.elements.weight.value);
+// Activity rates
+const activityNumber = {
+  min: 1.2,
+  low: 1.375,
+  medium: 1.55,
+  high: 1.725,
+  max: 1.9,
+};
 
-  // Button "Расчитать" becomes active only when all input fields are filled.
-  if (age && height && weight >= 1) {
+// Formulas
+function countCalories(weight, height, age, activity, gender) {
+  if (gender === "male") {
+    return (10 * weight + 6.25 * height - 5 * age + 5) * activity;
+  }
+  if (gender === "female") {
+    return (10 * weight + 6.25 * height - 5 * age - 161) * activity;
+  }
+}
+
+// Button "Расчитать" becomes active only when all input fields are filled.
+function checkSubmit() {
+  if (ageValue >= 1 && heightValue >= 1 && weightValue >= 1) {
     btnSubmit.removeAttribute("disabled");
   } else {
     btnSubmit.setAttribute("disabled", "disabled");
   }
+}
 
-  // Button "Очистить поля и расчёт" becomes active when at least one numeric field is filled.
-  if (age || height || weight >= 1) {
+// Button "Очистить поля и расчёт" becomes active when at least one numeric field is filled.
+function checkReset() {
+  if (ageValue || heightValue || weightValue) {
     btnReset.removeAttribute("disabled");
   }
+}
+
+form.addEventListener("change", function (evt) {
+  checkSubmit();
+  checkReset();
 });
 
 form.addEventListener("submit", function (evt) {
   evt.preventDefault();
+
   // By clicking on "Расчитать", a block with information about calories appears.
   if (result.classList.contains("counter__result--hidden")) {
     result.classList.remove("counter__result--hidden");
   }
 
   // Maintaining weight
-  const age = Number(evt.target.elements.age.value);
-  const height = Number(evt.target.elements.height.value);
-  const weight = Number(evt.target.elements.weight.value);
-  let activityNumber;
+  const ageValue = Number(evt.target.elements.age.value);
+  const heightValue = Number(evt.target.elements.height.value);
+  const weightValue = Number(evt.target.elements.weight.value);
+  const activityValue = activityNumber[evt.target.elements.activity.value];
+  const genderValue = evt.target.elements.gender.value;
 
-  // Activity rates
-  if (evt.target.elements.activity.value === "min") {
-    activityNumber = 1.2;
-  }
-  if (evt.target.elements.activity.value === "low") {
-    activityNumber = 1.375;
-  }
-  if (evt.target.elements.activity.value === "medium") {
-    activityNumber = 1.55;
-  }
-  if (evt.target.elements.activity.value === "high") {
-    activityNumber = 1.725;
-  }
-  if (evt.target.elements.activity.value === "max") {
-    activityNumber = 1.9;
-  }
+  const calories = countCalories(
+    ageValue,
+    heightValue,
+    weightValue,
+    activityValue,
+    genderValue
+  );
 
-  if (evt.target.elements.gender.value === "male") {
-    const percentageMen =
-      (countMen(age, height, weight, activityNumber) / 100) * 15;
+  const percentageCalories = (calories / 100) * 15;
 
-    function countMen(weight, height, age, activityNumber) {
-      return (10 * weight + 6.25 * height - 5 * age + 5) * activityNumber;
-    }
-
-    caloriesNorm.textContent = Math.round(
-      countMen(age, height, weight, activityNumber)
-    );
-
-    caloriesMax.textContent = Math.round(
-      percentageMen + countMen(age, height, weight, activityNumber)
-    );
-
-    caloriesMin.textContent = Math.round(
-      countMen(age, height, weight, activityNumber) - percentageMen
-    );
-  }
-
-  if (evt.target.elements.gender.value === "female") {
-    const percentageWomen =
-      (countWomen(age, height, weight, activityNumber) / 100) * 15;
-
-    function countWomen(weight, height, age, activityNumber) {
-      return (10 * weight + 6.25 * height - 5 * age - 161) * activityNumber;
-    }
-
-    caloriesNorm.textContent = Math.round(
-      countWomen(age, height, weight, activityNumber)
-    );
-
-    caloriesMax.textContent = Math.round(
-      percentageWomen + countWomen(age, height, weight, activityNumber)
-    );
-
-    caloriesMin.textContent = Math.round(
-      countWomen(age, height, weight, activityNumber) - percentageWomen
-    );
-  }
+  caloriesNorm.textContent = Math.round(calories);
+  caloriesMax.textContent = Math.round(percentageCalories + calories);
+  caloriesMin.textContent = Math.round(calories - percentageCalories);
 });
 
 // All elements of the application are reset to their default state
