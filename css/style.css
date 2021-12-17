@@ -11,8 +11,7 @@
   font-family: "PT Sans Caption";
 
   font-display: swap;
-  src:
-    url("../fonts/pt-sans-caption-bold.woff2") format("woff2"),
+  src: url("../fonts/pt-sans-caption-bold.woff2") format("woff2"),
     url("../fonts/pt-sans-caption-bold.woff") format("woff");
 }
 
@@ -22,8 +21,7 @@
   font-family: "PT Sans Caption";
 
   font-display: swap;
-  src:
-    url("../fonts/pt-sans-caption-regular.woff2") format("woff2"),
+  src: url("../fonts/pt-sans-caption-regular.woff2") format("woff2"),
     url("../fonts/pt-sans-caption-regular.woff") format("woff");
 }
 
@@ -58,9 +56,16 @@ body {
   padding: 0;
 }
 
-html {
+/* html {
   min-width: 1160px;
-}
+} */
+/*
+@media (min-width: 360px) {
+  html {
+    min-width: none;
+    width: 100%;
+  }
+} */
 
 body {
   width: 100%;
@@ -92,7 +97,6 @@ body {
   background-size: cover;
   background-color: var(--color-accent);
 }
-
 
 .header,
 .footer {
@@ -139,13 +143,7 @@ input::-webkit-inner-spin-button {
 /* ios inputs reset */
 select,
 textarea,
-input:matches([type="email"],
-  [type="number"],
-  [type="password"],
-  [type="search"],
-  [type="tel"],
-  [type="text"],
-  [type="url"]) {
+input:matches([type="email"], [type="number"], [type="password"], [type="search"], [type="tel"], [type="text"], [type="url"]) {
   appearance: none;
 }
 
@@ -173,10 +171,10 @@ input[type="number"] {
 
 .container {
   width: 100%;
-  max-width: 1160px;
+  max-width: 558px;
   margin: 0 auto;
-  padding-right: 300px;
-  padding-left: 300px;
+  padding-right: 15px;
+  padding-left: 15px;
 }
 
 .container--no-padding {
@@ -198,9 +196,23 @@ input[type="number"] {
   line-height: 83px;
 }
 
+@media (max-width: 768px) {
+  .heading-main {
+    font-size: 42px;
+    line-height: 40px;
+  }
+}
+
 .heading {
   font-size: 32px;
   line-height: 41px;
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: 28px;
+    line-height: 32px;
+  }
 }
 
 .counter {
@@ -258,6 +270,11 @@ input[type="number"] {
   padding: 0;
 
   list-style: none;
+}
+@media (max-width: 768px) {
+  .counter__result-list {
+    display: block;
+  }
 }
 
 .counter__result-item {
@@ -378,6 +395,13 @@ input[type="number"] {
   width: fit-content;
 }
 
+@media (max-width: 768px) {
+  .input {
+    width: auto;
+    margin-bottom: 20px;
+  }
+}
+
 .input__heading {
   display: flex;
   align-items: flex-end;
@@ -403,6 +427,12 @@ input[type="number"] {
   display: flex;
   width: 80px;
   margin: 0;
+}
+
+@media (max-width: 768px) {
+  .input__wrapper {
+    width: 100%;
+  }
 }
 
 .input__wrapper input {
@@ -456,9 +486,21 @@ input[type="number"] {
   list-style: none;
 }
 
+@media (max-width: 768px) {
+  .inputs-group {
+    display: block;
+  }
+}
+
 .inputs-group .input:nth-child(2) {
   margin-left: 47px;
   margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  .inputs-group .input:nth-child(2) {
+    margin-left: 0;
+  }
 }
 
 .radio__wrapper {
@@ -581,6 +623,13 @@ input[type="number"] {
   background-color: var(--color-gray-lightest);
 }
 
+@media (max-width: 768px) {
+  .button {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
 .form__item {
   margin: 0;
   margin-bottom: 40px;
@@ -601,6 +650,12 @@ input[type="number"] {
   display: flex;
   align-items: center;
   margin-top: 42px;
+}
+
+@media (max-width: 768px) {
+  .form__submit {
+    display: block;
+  }
 }
 
 .form__item:last-child {
@@ -624,6 +679,12 @@ input[type="number"] {
   background-color: transparent;
   transition: 0.3s ease;
   transition-property: color, box-shadow;
+}
+
+@media (max-width: 768px) {
+  .form__reset-button {
+    margin-left: 0;
+  }
 }
 
 .form__reset-button svg {
