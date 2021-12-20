@@ -29,8 +29,6 @@ function countCalories(weight, height, age, activity, gender) {
   }
 }
 
-console.log(countCalories(70, 180, 25, activityNumber.medium, "male"));
-
 // Button "Расчитать" becomes active only when all input fields are filled.
 function checkSubmit() {
   const ageValue = age.value;
