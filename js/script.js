@@ -53,6 +53,10 @@ function checkReset() {
   }
 }
 
+function formatNumber(num) {
+  return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, `$1 `);
+}
+
 form.addEventListener("change", function () {
   checkSubmit();
   checkReset();
@@ -83,9 +87,13 @@ form.addEventListener("submit", function (evt) {
 
   const percentageCalories = (calories / 100) * 15;
 
-  caloriesNorm.textContent = Math.round(calories);
-  caloriesMax.textContent = Math.round(percentageCalories + calories);
-  caloriesMin.textContent = Math.round(calories - percentageCalories);
+  caloriesNorm.textContent = formatNumber(Math.round(calories));
+  caloriesMax.textContent = formatNumber(
+    Math.round(percentageCalories + calories)
+  );
+  caloriesMin.textContent = formatNumber(
+    Math.round(calories - percentageCalories)
+  );
 });
 
 // All elements of the application are reset to their default state
