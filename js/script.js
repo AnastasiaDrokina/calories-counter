@@ -21,7 +21,7 @@ const activityNumber = {
 // Formulas
 function countCalories(weight, height, age, activity, gender) {
   if (gender === "female") {
-    return (10 * weight + 6.25 * height - 5 * age - 161) * activity;
+    return (10 * weight + 6.25 * height - 5 * age - 160) * activity;
   }
 
   if (gender === "male") {
@@ -85,11 +85,11 @@ form.addEventListener("submit", function (evt) {
     genderValue
   );
 
-  const percentageCalories = (calories / 100) * 15;
+  const percentageCalories = Math.round((calories * 15) / 100);
 
   caloriesNorm.textContent = formatNumber(Math.round(calories));
   caloriesMax.textContent = formatNumber(
-    Math.round(percentageCalories + calories)
+    Math.round(calories + percentageCalories)
   );
   caloriesMin.textContent = formatNumber(
     Math.round(calories - percentageCalories)
