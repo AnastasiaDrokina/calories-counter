@@ -20,13 +20,16 @@ const activityNumber = {
 
 // Formulas
 function countCalories(weight, height, age, activity, gender) {
-  if (gender === "male") {
-    return (10 * weight + 6.25 * height - 5 * age + 5) * activity;
-  }
   if (gender === "female") {
     return (10 * weight + 6.25 * height - 5 * age - 161) * activity;
   }
+
+  if (gender === "male") {
+    return (10 * weight + 6.25 * height - 5 * age + 5) * activity;
+  }
 }
+
+console.log(countCalories(70, 180, 25, activityNumber.medium, "male"));
 
 // Button "Расчитать" becomes active only when all input fields are filled.
 function checkSubmit() {
@@ -73,9 +76,9 @@ form.addEventListener("submit", function (evt) {
   const genderValue = evt.target.elements.gender.value;
 
   const calories = countCalories(
-    ageValue,
-    heightValue,
     weightValue,
+    heightValue,
+    ageValue,
     activityValue,
     genderValue
   );
