@@ -21,7 +21,7 @@ const activityNumber = {
 // Formulas
 function countCalories(weight, height, age, activity, gender) {
   if (gender === "female") {
-    return (10 * weight + 6.25 * height - 5 * age - 160) * activity;
+    return (10 * weight + 6.25 * height - 5 * age - 161) * activity;
   }
 
   if (gender === "male") {
