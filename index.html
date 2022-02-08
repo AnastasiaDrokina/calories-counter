@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -23,13 +23,13 @@
     />
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/style.css" />
-    <title>Счётчик калорий</title>
+    <title>Calorie counter</title>
   </head>
   <body class="page">
     <main class="main">
       <div class="container">
         <article class="counter">
-          <h1 class="counter__heading heading-main">Счётчик калорий</h1>
+          <h1 class="counter__heading heading-main">Calorie counter</h1>
           <form
             class="counter__form form"
             name="counter"
@@ -37,7 +37,7 @@
             method="post"
           >
             <div class="form__item">
-              <h2 class="heading">Пол</h2>
+              <h2 class="heading">Gender</h2>
               <ul class="switcher">
                 <li class="switcher__item">
                   <input
@@ -48,7 +48,7 @@
                     checked
                     required
                   />
-                  <label for="gender-male">Мужчина</label>
+                  <label for="gender-male">Male</label>
                 </li>
                 <li class="switcher__item">
                   <input
@@ -58,17 +58,17 @@
                     type="radio"
                     required
                   />
-                  <label for="gender-female">Женщина</label>
+                  <label for="gender-female">Female</label>
                 </li>
               </ul>
             </div>
             <fieldset class="form__item form__parameters" name="parameters">
-              <legend class="visually-hidden">Физические параметры</legend>
+              <legend class="visually-hidden">Physical parameters</legend>
               <div class="inputs-group">
                 <div class="input">
                   <div class="input__heading">
-                    <label class="heading" for="age">Возраст</label>
-                    <span class="input__heading-unit">лет</span>
+                    <label class="heading" for="age">Age</label>
+                    <span class="input__heading-unit">years</span>
                   </div>
                   <div class="input__wrapper">
                     <input
@@ -84,8 +84,8 @@
                 </div>
                 <div class="input">
                   <div class="input__heading">
-                    <label class="heading" for="height">Рост</label>
-                    <span class="input__heading-unit">см</span>
+                    <label class="heading" for="height">Height</label>
+                    <span class="input__heading-unit">cm</span>
                   </div>
                   <div class="input__wrapper">
                     <input
@@ -101,8 +101,8 @@
                 </div>
                 <div class="input">
                   <div class="input__heading">
-                    <label class="heading" for="weight">Вес</label>
-                    <span class="input__heading-unit">кг</span>
+                    <label class="heading" for="weight">Weight</label>
+                    <span class="input__heading-unit">kg</span>
                   </div>
                   <div class="input__wrapper">
                     <input
@@ -119,7 +119,7 @@
               </div>
             </fieldset>
             <fieldset class="form__item">
-              <legend class="heading">Физическая активность</legend>
+              <legend class="heading">Activity</legend>
               <ul class="radios-group">
                 <li class="radio">
                   <div class="radio__wrapper">
@@ -131,11 +131,9 @@
                       checked
                       required
                     />
-                    <label for="activity-minimal">Минимальная</label>
+                    <label for="activity-minimal">Sedentary</label>
                   </div>
-                  <p class="radio__description">
-                    Сидячая работа и нет физических нагрузок
-                  </p>
+                  <p class="radio__description">Little or no exercise</p>
                 </li>
                 <li class="radio">
                   <div class="radio__wrapper">
@@ -146,11 +144,9 @@
                       type="radio"
                       required
                     />
-                    <label for="activity-low">Низкая</label>
+                    <label for="activity-low">Light</label>
                   </div>
-                  <p class="radio__description">
-                    Редкие, нерегулярные тренировки, активность в быту
-                  </p>
+                  <p class="radio__description">Exercise 1-3 times a week</p>
                 </li>
                 <li class="radio">
                   <div class="radio__wrapper">
@@ -161,9 +157,9 @@
                       type="radio"
                       required
                     />
-                    <label for="activity-medium">Средняя</label>
+                    <label for="activity-medium">Moderate</label>
                   </div>
-                  <p class="radio__description">Тренировки 3-5 раз в неделю</p>
+                  <p class="radio__description">Exercise 4-5 times a week</p>
                 </li>
                 <li class="radio">
                   <div class="radio__wrapper">
@@ -174,9 +170,11 @@
                       type="radio"
                       required
                     />
-                    <label for="activity-high">Высокая</label>
+                    <label for="activity-high">Active</label>
                   </div>
-                  <p class="radio__description">Тренировки 6-7 раз в неделю</p>
+                  <p class="radio__description">
+                    Daily exercise or intense exercise 3-4 times a week
+                  </p>
                 </li>
                 <li class="radio">
                   <div class="radio__wrapper">
@@ -187,10 +185,10 @@
                       type="radio"
                       required
                     />
-                    <label for="activity-maximal">Очень высокая</label>
+                    <label for="activity-maximal">Very active</label>
                   </div>
                   <p class="radio__description">
-                    Больше 6 тренировок в неделю и физическая работа
+                    Intense exercise 6-7 times a week, or physical job
                   </p>
                 </li>
               </ul>
@@ -202,7 +200,7 @@
                 type="submit"
                 disabled
               >
-                Рассчитать
+                Calculate
               </button>
               <button
                 class="form__reset-button"
@@ -223,33 +221,33 @@
                     d="M13.4143 12.0002L18.7072 6.70725C19.0982 6.31625 19.0982 5.68425 18.7072 5.29325C18.3162 4.90225 17.6842 4.90225 17.2933 5.29325L12.0002 10.5862L6.70725 5.29325C6.31625 4.90225 5.68425 4.90225 5.29325 5.29325C4.90225 5.68425 4.90225 6.31625 5.29325 6.70725L10.5862 12.0002L5.29325 17.2933C4.90225 17.6842 4.90225 18.3162 5.29325 18.7072C5.48825 18.9022 5.74425 19.0002 6.00025 19.0002C6.25625 19.0002 6.51225 18.9022 6.70725 18.7072L12.0002 13.4143L17.2933 18.7072C17.4882 18.9022 17.7443 19.0002 18.0002 19.0002C18.2562 19.0002 18.5122 18.9022 18.7072 18.7072C19.0982 18.3162 19.0982 17.6842 18.7072 17.2933L13.4143 12.0002Z"
                   />
                 </svg>
-                <span>Очистить поля и расчёт</span>
+                <span>Clear</span>
               </button>
             </div>
           </form>
           <section class="counter__result counter__result--hidden">
-            <h2 class="heading">Ваша норма калорий</h2>
+            <h2 class="heading">Your result</h2>
             <ul class="counter__result-list">
               <li class="counter__result-item">
                 <h3>
                   <span id="calories-norm">3 800</span>
-                  ккал
+                  cal
                 </h3>
-                <p>поддержание веса</p>
+                <p>maintain weight</p>
               </li>
               <li class="counter__result-item">
                 <h3>
                   <span id="calories-minimal">3 300</span>
-                  ккал
+                  cal
                 </h3>
-                <p>снижение веса</p>
+                <p>weight loss</p>
               </li>
               <li class="counter__result-item">
                 <h3>
                   <span id="calories-maximal">4 000</span>
-                  ккал
+                  cal
                 </h3>
-                <p>набор веса</p>
+                <p>weight gain</p>
               </li>
             </ul>
           </section>

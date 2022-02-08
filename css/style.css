@@ -278,7 +278,7 @@ input[type="number"] {
 }
 
 .counter__result-item {
-  max-width: 124px;
+  max-width: 147px;
 }
 
 .counter__result-item h3 {
@@ -582,7 +582,7 @@ input[type="number"] {
 }
 
 .radios-group {
-  max-width: 94%;
+  max-width: 93%;
   margin: 0;
   padding: 0;
 
